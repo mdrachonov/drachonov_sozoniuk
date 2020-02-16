@@ -36,15 +36,13 @@ int main()
 
 	while (videoCapture.read(image))
 	{
-		// Użyj klasyfikator na klatce
         imgRoi = image(Rect(0, image.rows / 2, image.cols, image.rows / 2));
 
 		cvtColor(imgRoi, grayColor, COLOR_BGR2GRAY);
         cvtColor(image, grayColor2, COLOR_BGR2GRAY);
 
         grayColor.copyTo(grayColor1);
-        
-        // Kaskada samochodu
+
 		cars.detectMultiScale(grayColor, vehicle_detected, 1.1, 5, 0 | CASCADE_SCALE_IMAGE, Size(30, 30));
 		create_positions(image, vehicle_detected, Scalar(128, 128, 128));
 
